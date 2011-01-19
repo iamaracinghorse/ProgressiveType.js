@@ -22,13 +22,14 @@ blockquote,q{quotes:"" "";}
 /*-----------------------------------------------------------------------------------
 end reset
 -----------------------------------------------------------------------------------*/
-body{background:url('../images/term_bg.png') #1c2520; color:#01D40A; font-family:Menlo, Monaco, Courier;  }
+body{background:url('../images/term_bg.png') #1c2520; color:#01D40A; font-family:Menlo, Monaco, Courier; text-shadow:0 0 5px rgba(1,210,10, 1); }
 #wrapper{width:960px; margin:0 auto;}
 .main{width:600px; padding:0 20px 20px; float:left;}
 .sidebar{width:280px; padding:0 20px; float:left;}
 .footer{border-top:1px solid #01D40A; clear:both; padding-top:20px; margin:40px 20px 0;}
 .footer p{font-size:11px;}
-p{font-size:13px; margin-bottom:21px; line-height:21px;}
+p{font-size:13px; margin-bottom:21px; line-height:21px; }
 .sidebar p{font-size:11px;}
 .sidebar h3{font-size:26px;}
 h3{font-size:32px; margin-bottom:21px; line-height:52px ; text-transform:uppercase;}
+pre{font-size:10px;}

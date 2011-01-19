@@ -59,18 +59,4 @@ $.fn.progressiveType = function(opts){
 	return this;
 }
 
-$(document).ready(function() {
-	$('.content').each(function(){
-		$(this).progressiveType({maintainHeight:true});
-	});
-	
-	$('.sidebar').each(function(){
-		$(this).progressiveType({maintainHeight:true});
-	});
-	
-	$('.footer').each(function(){
-		$(this).progressiveType({maintainHeight:true});
-	});
-});
-
 

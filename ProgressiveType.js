@@ -1,6 +1,6 @@
 $.fn.progressiveType = function(opts){
 	var defaults = {
-		speed : 0,
+		speed : 1000,
 		concurrent : false,
 		maintainHeight : false,
 		complete : function(){console.log('text rendered');}
@@ -11,32 +11,33 @@ $.fn.progressiveType = function(opts){
 	var ind = 0;
 	var $elems;
 	var theElem;
+	var eIndex = 0;
 	var txtArray = [];
 	if($this.children().length){
 		$elems = $this.children();
 	}else{
 		$elems = $this;
 	}
-	
-	var loop = function(eIndex){
-		window.setTimeout(function(){
-			theElem = $($elems[eIndex]);
-			// console.log(txt);
-			if(ind<txt.length){
-				theElem.text(theElem.text() + txt[ind] );
-				ind++;
-				loop(eIndex);
-			}else if(ind==txt.length && eIndex < $elems.length - 1){
-				eIndex++;
-				ind = 0;
-				txt = txtArray[eIndex]
-				loop(eIndex);
-			}else{
-				options.complete();
+		
+	var printer = function(ind){
+		theElem = $elems.eq(ind)
+		
+		$({count:0}).animate({count:txt.length}, {
+		    duration: options.speed,
+		    step: function() {
+		        theElem.text(txt.substring(0, Math.round(this.count)) );
+		    }, 
+			complete: function(){
+				if($elems.length > 1 && eIndex < $elems.length - 1){
+					eIndex++;
+					txt = txtArray[eIndex];
+					printer(eIndex);
+				}else{
+					options.complete();
+				}
 			}
-		}, options.speed);
+		});
 	}
-	
 	
 	$elems.each(function(){
 		var t = $(this);
@@ -49,11 +50,11 @@ $.fn.progressiveType = function(opts){
 	if(options.concurrent === true){
 		$elems.each(function(i){
 			txt = txtArray[i];
-			loop(i);
+			printer(i);
 		});
 	}else{
 		txt = txtArray[0];
-		loop(0);
+		printer(0);
 	}
 
 	return this;
